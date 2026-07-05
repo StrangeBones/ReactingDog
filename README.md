@@ -18,7 +18,7 @@ An Arduino-powered robotic dog that listens to ambient sound and reacts in real 
 
 | Component | Model | Pin |
 |---|---|---|
-| Microcontroller | ELAGOO UNO R3 | — |
+| Microcontroller | ELEGOO UNO R3 | — |
 | Microphone amplifier | MAX4466 | A0 |
 | RGB LED (common cathode) | — | 3 (R), 5 (G), 6 (B) |
 | Tail servo | SG90 | 9 |
