@@ -25,7 +25,6 @@ An Arduino-powered robotic dog that listens to ambient sound and reacts in real 
 | Ear servo | SG90 | 11 |
 | Passive buzzer | — | 10 |
 
-> **Power note:** Two servos drawing current simultaneously can cause voltage dips on the Arduino 5 V rail. Consider powering the servos from a separate 5 V supply (shared GND) if you observe resets or erratic behavior.
 
 ---
 
