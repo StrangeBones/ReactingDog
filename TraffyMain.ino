@@ -7,7 +7,7 @@
  * Loudness levels:
  *   LOUD  (>= 7) — red LED, ears up, buzzer barks
  *   MID   (>=  4) — blue LED, ears half-up
- *   QUIET (<   1) — green LED, ears down, tail wags
+ *   QUIET (<   4) — green LED, ears down, tail wags
  *
  * Pin assignments
  *   A0  - MAX4466 microphone
@@ -21,7 +21,7 @@
 
 #include <Servo.h>
 
-//microphone (MAX4466)
+//microphone 
 const int micPin = A0;
 
 //LEDs
@@ -40,9 +40,10 @@ Servo earServo;
 //passive buzzer
 const int buzzerPin = 10;
 
-//thresholds
-const int blueThreshold = 1;
-const int redThreshold = 20;
+//thresholds 
+//change these values for further adjusments 
+const int blueThreshold = 4;
+const int redThreshold = 7;
 
 //setup
 void setup() {
@@ -60,14 +61,14 @@ void setup() {
 
   //ear servo 
   earServo.attach(earServoPin);
-  earServo.write(30); // Ohren unten
+  earServo.write(30); 
 }
 
 void loop() {
 
   int loudness = 0;
 
-  // 5 Messungen mitteln
+  //the average of five measurements
   for (int i = 0; i < 5; i++) {
 
     int signalMax = 0;
@@ -97,8 +98,8 @@ void loop() {
 
     setColor(255, 0, 0);
 
-    tailServo.write(90);     // Schwanz still
-    earServo.write(160);     // Ohren oben
+    tailServo.write(90);     
+    earServo.write(160);     
 
     barkSound();
 
@@ -111,7 +112,7 @@ void loop() {
     setColor(0, 0, 255);
 
     tailServo.write(90);
-    earServo.write(75);      // Ohren halb oben
+    earServo.write(75);      
 
     delay(3000);
   }
@@ -121,7 +122,7 @@ void loop() {
 
     setColor(0, 255, 0);
 
-    earServo.write(30);      // Ohren unten
+    earServo.write(30);      
 
     wagTail();
 
@@ -154,15 +155,15 @@ void barkSound() {
 
   for (int i = 0; i < 2; i++) {
 
-    // Tiefes "Wuff"
+    //low "wuff"
     tone(buzzerPin, 200);
     delay(80);
 
-    // Mittleres Bellen
+    //mid bark
     tone(buzzerPin, 600);
     delay(120);
 
-    // Hoher Peak
+    //high peak
     tone(buzzerPin, 900);
     delay(100);
 
