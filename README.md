@@ -1,6 +1,6 @@
-# 🐶 ReactingDog
+# 🐶 Traffy
 
-An Arduino-powered robotic dog that listens to ambient sound and reacts in real time — wagging its tail when it's quiet, perking up its ears when it hears something, and barking back when things get loud.
+An Arduino-powered robotic dog that listens to ambient sound and reacts in real time. Wagging its tail when it's quiet, perking up its ears when it hears something, and barking back when things get loud.
 
 ---
 
@@ -8,9 +8,9 @@ An Arduino-powered robotic dog that listens to ambient sound and reacts in real 
 
 | Loudness | LED | Ears | Tail | Buzzer |
 |---|---|---|---|---|
-| Quiet (`< 1`) | 🟢 Green | Down | Wagging | — |
-| Mid (`≥ 1`) | 🔵 Blue | Half-up | Still | — |
-| Loud (`≥ 20`) | 🔴 Red | Up | Still | Bark |
+| Quiet (`< 4`) | 🟢 Green | Down | Wagging | — |
+| Mid (`≥ 4`) | 🔵 Blue | Half-up | Still | — |
+| Loud (`≥ 7`) | 🔴 Red | Up | Still | Bark |
 
 ---
 
@@ -18,11 +18,11 @@ An Arduino-powered robotic dog that listens to ambient sound and reacts in real 
 
 | Component | Model | Pin |
 |---|---|---|
-| Microcontroller | Arduino Uno / Nano | — |
+| Microcontroller | ELAGOO UNO R3 | — |
 | Microphone amplifier | MAX4466 | A0 |
 | RGB LED (common cathode) | — | 3 (R), 5 (G), 6 (B) |
-| Tail servo | SG90 or similar | 9 |
-| Ear servo | SG90 or similar | 11 |
+| Tail servo | SG90 | 9 |
+| Ear servo | SG90 | 11 |
 | Passive buzzer | — | 10 |
 
 > **Power note:** Two servos drawing current simultaneously can cause voltage dips on the Arduino 5 V rail. Consider powering the servos from a separate 5 V supply (shared GND) if you observe resets or erratic behavior.
@@ -34,7 +34,7 @@ An Arduino-powered robotic dog that listens to ambient sound and reacts in real 
 ```
 MAX4466  OUT ──────────────► A0
          GND ──────────────► GND
-         VCC ──────────────► 3.3 V
+         VCC ──────────────► 5 V
 
 RGB LED  R   ──[220 Ω]────► D3
          G   ──[220 Ω]────► D5
@@ -71,7 +71,7 @@ ReactingDog/
 ## How to build & upload
 
 1. Open `ReactingDog.ino` in the **Arduino IDE** (≥ 1.8) or **Arduino IDE 2**.
-2. Make sure the `Servo` library is available — it ships with the IDE by default.
+2. Make sure the `Servo` library is available - it ships with the IDE by default.
 3. Select your board (**Tools → Board**) and port (**Tools → Port**).
 4. Click **Upload** (Ctrl + U).
 5. Open **Serial Monitor** at **9600 baud** to watch live loudness values.
@@ -83,8 +83,8 @@ ReactingDog/
 Adjust the two thresholds in `ReactingDog.ino` to match your environment:
 
 ```cpp
-const int THRESHOLD_LOUD = 20;  // peak-to-peak amplitude for "loud"
-const int THRESHOLD_MID  =  1;  // peak-to-peak amplitude for "mid"
+const int THRESHOLD_LOUD = 6-8;  // peak-to-peak amplitude for "loud"
+const int THRESHOLD_MID  =  3-4;  // peak-to-peak amplitude for "mid"
 ```
 
 The `MicSensor` constructor also accepts custom sample count and window length:
