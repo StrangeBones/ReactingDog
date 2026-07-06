@@ -1,6 +1,6 @@
 # Traffy
 
-An Arduino-powered robotic dog that listens to ambient sound and reacts in real time. Wagging its tail when it's quiet, perking up its ears when it hears something, and barking back when things get loud.
+An ELEGOO-powered robotic dog that listens to ambient sound and reacts in real time. Wagging its tail when it's quiet, perking up its ears when it hears something, and barking back when things get loud.
 
 ---
 
